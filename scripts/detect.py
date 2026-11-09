@@ -67,7 +67,14 @@ RULES = {
  "slop-splash-inflation": ("slop", "P2", "{v} of pages are single-panel (library {ref}).", "Splashes are spent, not sprinkled; fold weaker ones into multi-panel pages."),
  "slop-speedlines":       ("slop", "P3", "Speed lines named in {v} of panels.", "Motion comes from staging and cuts first; keep speed lines for the swing."),
  "slop-centered":         ("slop", "P3", "{v} of panels put the subject dead centre.", "Place subjects on thirds and leave the opposite cell for lettering."),
+ # census families: fire only when a plan marks the device. A frontal face is not a mark.
+ "expr-reader-address":   ("expression", "P2", "Panel {v} looks at the reader on a {beat} page.", "Spend a look at the reader as a hook or a gag, or aim the face at the person in the scene. A frontal shot with a listener at the camera is not an address."),
+ "wall-overrun-unmarked": ("craft", "P2", "The {beat} page breaks a border and records no overrun.", "Record how far the object crosses, as a fraction of page width and of page height."),
+ "absurd-break-without-setup": ("pacing", "P2", "An absurdity break has no setup panel.", "Name the panels that established the normal before the panel that breaks it."),
 }
+_READER_GAZE = {"at-reader", "at reader", "reader"}
+_ADDRESS_SPENT = {"hook", "gag", "comedy"}
+_BORDER_CLASSES = {"border-overrun", "figure-leaves-grid", "prop-enters", "sfx-in-gutter"}
 SEV_W = {"P0": 25, "P1": 8, "P2": 3, "P3": 1}
 
 
@@ -89,6 +96,35 @@ def _slanted(poly):
 
 def _density(n):
     return "L" if n <= 2 else ("M" if n <= 5 else "H")
+
+
+def _addresses_reader(p):
+    """A listener at the camera cancels the address. gaze: forward only records facing."""
+    if p.get("listener"):
+        return False
+    if p.get("to_reader") is True:
+        return True
+    gaze = str(p.get("gaze") or "").strip().lower().replace("_", "-")
+    return gaze in _READER_GAZE
+
+
+def _overrun_marked(p):
+    ov = p.get("overrun") if isinstance(p.get("overrun"), dict) else {}
+    w = p.get("overrun_w", ov.get("w"))
+    h = p.get("overrun_h", ov.get("h"))
+    try:
+        return float(w) > 0 and float(h) > 0
+    except (TypeError, ValueError):
+        return False
+
+
+def _claims_border_break(p):
+    if p.get("border_break") is True:
+        return True
+    fw = p.get("fourth_wall") or []
+    if isinstance(fw, dict):
+        fw = [fw]
+    return any(isinstance(d, dict) and d.get("class") in _BORDER_CLASSES for d in fw)
 
 
 def check(path, cfg):
@@ -179,6 +215,8 @@ def check(path, cfg):
             if ins_run == 3: F.append(_f("shot-insert-run", no, p["id"], fname, v=3))
             if angle_of(p) == "dutch" and energy < 5:
                 F.append(_f("shot-dutch-calm", no, p["id"], fname, v=energy))
+            if _addresses_reader(p) and beat not in _ADDRESS_SPENT:
+                F.append(_f("expr-reader-address", no, p.get("id"), fname, v=p.get("id") or "", beat=beat))
             # lettering
             lets = [b for b in p.get("lettering", []) if b.get("kind") != "sfx"]
             for b in lets:
@@ -190,6 +228,15 @@ def check(path, cfg):
             if len(lets) > cfg["max_balloons_panel"]: F.append(_f("letter-balloon-count", no, p["id"], fname, v=len(lets), ref=cfg["max_balloons_panel"]))
             caps = sum(1 for b in lets if b.get("kind") == "caption")
             if caps >= 3: F.append(_f("letter-caption-stack", no, p["id"], fname, v=caps))
+        if beat in ("impact", "reveal") and any(_claims_border_break(p) for p in P) and not any(_overrun_marked(p) for p in P):
+            F.append(_f("wall-overrun-unmarked", no, file=fname, beat=beat))
+        absurd = pg.get("absurdity") or []
+        if isinstance(absurd, dict):
+            absurd = [absurd]
+        for a in absurd:
+            if (a.get("break") or a.get("panels")) and not a.get("setup"):
+                F.append(_f("absurd-break-without-setup", no, file=fname))
+                break
         if beat == "impact" and not any(b.get("kind") == "sfx" for p in P for b in p.get("lettering", [])):
             F.append(_f("letter-impact-silent", no, file=fname))
         if cls and cls[-1] in ("WS", "EWS", "FS"): ends_wide += 1

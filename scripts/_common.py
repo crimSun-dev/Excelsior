@@ -85,10 +85,11 @@ def load_plan(path):
                 panels.append(q)
             out.append(dict(no=pg.get("page", i + 1), energy=pg.get("energy", b.get("energy", 5)), beat=pg.get("beat", b.get("beat", "build")),
                             scene=b.get("scene"), paper=b.get("paper", "white"), note=pg.get("note", ""), layout=pg["layout"],
-                            inspired_by=pg.get("inspired_by"), panels=panels))
+                            inspired_by=pg.get("inspired_by"), absurdity=pg.get("absurdity", b.get("absurdity", [])), panels=panels))
         else:
             out.append(dict(no=pg.get("no", i + 1), energy=pg.get("energy", 5), beat=pg.get("beat", "build"), scene=pg.get("scene"),
                             paper=pg.get("paper", "white"), note=pg.get("note", ""), layout=None, inspired_by=None,
+                            absurdity=pg.get("absurdity", []),
                             panels=[dict(p, geo=None) for p in pg.get("panels", [])]))
     return d, out
 

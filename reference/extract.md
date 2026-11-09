@@ -12,7 +12,7 @@ Pull what the series repeats into a reusable kit, so chapters stop re-inventing 
 
 ## Consolidate
 
-Where the same device appears in slightly different forms, propose one canonical version and list the variants it replaces; ask before merging variants the user may have meant. Never extract from one occurrence: a pattern needs at least three.
+Where the same device appears in slightly different forms, propose one canonical version and list the variants it replaces; ask before merging variants the user may have meant. Never extract from one occurrence: a pattern needs at least three distinct chapters. Two copies of the same chapter count once.
 
 ## Wire it in
 

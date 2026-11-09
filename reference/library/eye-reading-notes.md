@@ -2,6 +2,8 @@
 
 Pages read by eye during the full ingest, one contact sheet of random pages per batch, across every series. References are `SERIES_chCHAPTER:page` (page index from 0 within the chapter file). These are observations about composition and pacing, used to write the "Read by eye" techniques in the Manga Composition Standard v2. Only descriptions are recorded, never artwork.
 
+The 2026-11-09 census read Dragon Ball Super and Persona 5 in full and Persona 3 in part. It did not replace these notes. Where a finished series sheet later disagrees with a sentence below, the sheet wins. Until that sheet exists, these notes stand. Reader address, lettering origin, and overrun are defined in the composition standard's census rules.
+
 ## Sheet 01 · Hanako-kun (Vol 0–12)
 - HNK ch52 p14: extreme-wide bird's-eye of tiny figures in rubble fills the top half, then two medium/close panels below. The scale jump inside one page does the emotional work.
 - HNK ch1.3 p3: an insert of a hand holding the charm; another hand reaches across the bottom-right border. Props cross borders, not just bodies.

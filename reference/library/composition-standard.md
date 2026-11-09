@@ -222,4 +222,16 @@ The 3.2-second silences and 02:47 use void pages and strip pages with widening g
 | DB Ch 193 p 11 | A single diagonal impact with enormous SFX across the whole page. |
 | DB Ch 304 p 14 | A rectangular grid broken by one exploding panel. Rules stated, then broken. |
 
-*Caveats: the measurements come from automatic panel detection. Art that crosses a border can merge two panels into one, so frame-break and single-panel rates are slightly high. Scanned pages are often trimmed, which inflates bleed rates outside the Dragon Ball print edition. Credit and promo pages were filtered out. Shot tags are judged by eye and cover a small sample so far.*
+*Caveats: the measurements come from automatic panel detection. Art that crosses a border can merge two panels into one, so frame-break and single-panel rates are slightly high. Scanned pages are often trimmed, which inflates bleed rates outside the Dragon Ball print edition. Credit and promo pages were filtered out. Shot tags are judged by eye and cover a small sample so far. Black paper and full-bleed art often leave the polygon cropped, and a tall panel that spans rows can put the tier reading order on the wrong panel. A cropped or merged polygon stays the box; it is not replaced by hand.*
+
+## Census rules (2026-11-09)
+
+These come from the finished eye pass on Dragon Ball Super and Persona 5, and from the rules locked while Persona 3 was being read. They do not replace a series signature. Hanako-kun, KonoSuba, and Dragon Ball colour have measured geometry and do not yet have a finished eye sheet. The K-nity house layer is unchanged.
+
+- A look at the reader is a character, their face, or their balloon aimed at the audience. A frontal face with someone in the scene at the camera is a listener shot. `gaze: forward` only records which way the face points.
+- Spend a reader address as a hook or a gag. `expr-reader-address` flags a plan that marks one on any other beat. `slop-face-parade` still owns a run of close-ups; this rule does not duplicate it.
+- A border break on an impact or reveal records the overrun as a fraction of page width and of page height: how far the object extends past that edge. On a side edge, width is the protrusion and height is the crossed piece. On a top or bottom edge, the pair swaps. Colour-page eye labels stay beside `bridge_page_rate` and do not replace it. `wall-overrun-unmarked` flags a peak that claims the break and stores neither fraction.
+- An absurdity names the panels that set the normal and the panel that breaks it, including when the setup is on an earlier page. `absurd-break-without-setup` flags a break with no setup. A one-off device stays a sample until three distinct chapters show it. Two files of the same chapter count once.
+- One expression tuple is the dominant face. A crowded panel also keeps a face count.
+- Sound effects redrawn by a scanlation or an official English edition are not the artist's lettering device. Translator notes are not a gutter device.
+- Credits, bonus pages, volume extras, an author afterword, and third-party pages are not story. A gag comic drawn by the series is story.

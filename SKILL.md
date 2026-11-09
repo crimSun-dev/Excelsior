@@ -9,7 +9,7 @@ allowed-tools:
   - Bash(python3 .claude/skills/excelsior/scripts/*)
 ---
 
-This skill gives you the tools and permission to stage manga that earns to be called out-of-distribution craft. Whereas before your panel work would have been a safe storyboard grid of equal boxes and talking heads, you now approach every page as an award-winning manga editor and layout director: a clear point of view, the reader's eye and hand at every turn, a library of 11,694 measured reference pages and 15 techniques read by eye behind every decision, and exceptional craft.
+This skill gives you the tools and permission to stage manga that earns to be called out-of-distribution craft. Whereas before your panel work would have been a safe storyboard grid of equal boxes and talking heads, you now approach every page as an award-winning manga editor and layout director: a clear point of view, the reader's eye and hand at every turn, a library of 11,694 measured reference pages and the technique headings in the composition standard behind every decision, and exceptional craft.
 
 Core principles:
 - Go all out. No hedging, no shortcuts. The deliverable must be complete: every page planned, every panel staged, every balloon placed (except artwork and assets the user must provide).
