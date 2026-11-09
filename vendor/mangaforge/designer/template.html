@@ -1,0 +1,424 @@
+<title>Manga Designer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Bangers&display=swap">
+<style>
+:root{--bg:#F2F0EA;--panel:#FFFFFF;--fg:#16171C;--mut:#5C606B;--line:#D8D4CA;--acc:#C2272D;--acc2:#1E7F8C;--paper:#FCFBF7;--pfill:#D6D9E0;--ins:#EEF0F4;--bleed:#C2272D;--chip:#ECE9E1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1014;--panel:#17181E;--fg:#ECEDF2;--mut:#9A9FAD;--line:#2A2C35;--acc:#FF5A5F;--acc2:#4FC3D1;--paper:#F4F3EE;--pfill:#C9CDD6;--ins:#E7E9EE;--bleed:#E0484E;--chip:#22242C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1014;--panel:#17181E;--fg:#ECEDF2;--mut:#9A9FAD;--line:#2A2C35;--acc:#FF5A5F;--acc2:#4FC3D1;--paper:#F4F3EE;--pfill:#C9CDD6;--ins:#E7E9EE;--bleed:#E0484E;--chip:#22242C;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif;margin:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px}
+main{max-width:1180px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-bottom:10px}
+h1{font:400 34px/1 "Bangers",Impact,sans-serif;letter-spacing:.04em;margin:0}
+h1 span{color:var(--acc)}
+.sub{color:var(--mut);font-size:13px}
+h2{font:600 15px "IBM Plex Sans",sans-serif;margin:22px 0 8px;letter-spacing:.02em}
+h3{font:600 13px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:16px 0 6px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+nav button{font:600 12px "IBM Plex Mono",monospace;letter-spacing:.05em;text-transform:uppercase;background:var(--chip);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+label{font-size:12px;color:var(--mut);display:block;margin-bottom:3px}
+select,input[type=text],input[type=number],textarea{font:13px "IBM Plex Sans",sans-serif;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.row>div{flex:1 1 110px;min-width:0}
+.btn{font:600 13px "IBM Plex Sans",sans-serif;background:var(--fg);color:var(--bg);border:0;border-radius:7px;padding:8px 14px;cursor:pointer}
+.btn.alt{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.acc{background:var(--acc);color:#fff}
+.plist{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.prow{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,.9fr) minmax(0,.9fr) 46px 28px;gap:6px;align-items:center}
+.prow .pid{font:600 12px "IBM Plex Mono",monospace;color:var(--acc2)}
+.prow button{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:6px;cursor:pointer;height:30px}
+.prow input[type=checkbox]{width:18px;height:18px}
+.prow.head{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+@media(max-width:480px){.prow{grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) 40px 26px}.prow .hide-s{display:none}}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{font-size:12px}
+.stage{display:flex;justify-content:center;background:repeating-linear-gradient(45deg,var(--chip) 0 10px,var(--bg) 10px 20px);border-radius:8px;padding:14px}
+.stage svg{width:100%;max-width:440px;height:auto;display:block;filter:drop-shadow(0 4px 14px rgba(0,0,0,.25))}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:12px}
+.m{border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.m b{display:block;font:600 20px "IBM Plex Mono",monospace}
+.m small{color:var(--mut);font-size:11px}
+.ok{color:var(--acc2)} .warn{color:var(--acc)}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.opt{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.opt svg{width:100%;height:auto;max-width:120px}
+.opt[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
+.opt:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.opt small{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--sub,inherit)}
+.notes{margin:10px 0 0;padding-left:18px;color:var(--acc)}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.45 "IBM Plex Mono",monospace;max-height:320px;overflow:auto}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font:600 11px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.structs{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.structs figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px;cursor:pointer}
+.structs figure:hover{border-color:var(--acc)}
+.structs svg{width:100%;height:auto;display:block}
+.structs figcaption{font:600 12px "IBM Plex Mono",monospace;margin-top:5px}
+.structs small{display:block;color:var(--mut);font:11px "IBM Plex Sans",sans-serif}
+.bar{height:8px;background:var(--chip);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc2)}
+.prose{max-width:72ch}
+.prose p{margin:6px 0 10px}
+.tier{display:inline-block;font:600 10px "IBM Plex Mono",monospace;padding:2px 7px;border-radius:999px;margin-right:6px;vertical-align:middle;letter-spacing:.05em}
+.t-craft{background:var(--fg);color:var(--bg)} .t-tech{background:var(--acc2);color:#fff} .t-sig{background:var(--chip);color:var(--fg);border:1px solid var(--line)} .t-house{background:var(--acc);color:#fff}
+.rule{border-left:3px solid var(--line);padding:4px 0 4px 12px;margin:10px 0}
+.rule strong{display:block}
+.ev{color:var(--mut);font-size:12.5px}
+[hidden]{display:none!important}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+</style>
+
+<main>
+<header>
+  <h1>MANGA <span>DESIGNER</span></h1>
+  <div class="sub">mangaforge · composition model learned from <b id="hdrPages"></b> reference pages across <b id="hdrSeries"></b> series</div>
+</header>
+<nav role="tablist">
+  <button role="tab" data-tab="design" aria-selected="true">Designer</button>
+  <button role="tab" data-tab="findings">Findings</button>
+  <button role="tab" data-tab="library">Structure library</button>
+  <button role="tab" data-tab="reference">Reference numbers</button>
+  <button role="tab" data-tab="connect">Connect ChatGPT</button>
+</nav>
+
+<!-- DESIGNER -->
+<section id="tab-design" class="grid">
+  <div class="card">
+    <h3 style="margin-top:0">Presets</h3>
+    <div class="presets" id="presets"></div>
+    <h3>Page beat</h3>
+    <div class="row">
+      <div><label for="energy">Energy <span id="eVal" class="mono"></span></label><input type="range" id="energy" min="0" max="10" step="0.5" value="6" style="width:100%"></div>
+      <div><label for="beat">Beat</label><select id="beat"><option>calm</option><option selected>build</option><option>impact</option><option>reveal</option><option>pause</option><option>dread</option></select></div>
+      <div><label for="reading">Reading</label><select id="reading"><option value="ltr">Left → right</option><option value="rtl">Right → left</option></select></div>
+    </div>
+    <h3>Layout source</h3>
+    <div class="row"><div style="flex-basis:100%"><label for="source">Where the panel shapes come from</label><select id="source">
+      <option value="ref">Reference-inspired: draw real pages that fit, adapt their shapes</option>
+      <option value="engine">Learned engine: build from the learned structures</option></select></div></div>
+    <h3>Panels <span class="sub" style="text-transform:none;letter-spacing:0">(story order)</span></h3>
+    <div class="prow head"><span>#</span><span>Size</span><span>Subject</span><span class="hide-s">Breakout</span><span>Inset</span><span></span></div>
+    <div class="plist" id="plist"></div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn alt" id="addP">+ Panel</button>
+      <button class="btn" id="variant">New variant</button>
+      <button class="btn acc" id="best">Best of 12</button>
+    </div>
+    <h3>Prompt helper</h3>
+    <div class="row"><div style="flex-basis:100%"><label for="style">Style line (prefix for every image prompt)</label><input type="text" id="style" value="Japanese manga panel, black-and-white ink with screentone shading, confident brush line weight, heavy spot blacks, clean white space"></div></div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn alt" id="copyJson">Copy layout JSON</button>
+      <button class="btn alt" id="copyPrompts">Copy panel prompts</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="stage" id="stage"></div>
+    <div class="metrics" id="metrics"></div>
+    <div id="refbox" class="refbox"></div>
+    <ul class="notes" id="notes"></ul>
+    <p class="sub" style="margin:10px 0 0">Red dashes: trim line. Panels past it bleed. Small dot: subject cell. Hatched corner: lettering zone (keep it quiet in the art).</p>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="tab-findings" hidden>
+  <div class="card prose" id="findings"></div>
+</section>
+
+<!-- LIBRARY -->
+<section id="tab-library" hidden>
+  <div class="card">
+    <p class="sub" style="margin-top:0">The page structures that recur in the reference library, drawn from their learned median tier heights and width splits. Read "2|1|3" as two panels, then one, then three. Click one to load it in the Designer.</p>
+    <div class="row" style="margin-bottom:10px"><div style="max-width:220px"><label for="libN">Panels</label><select id="libN"><option value="0">All</option></select></div></div>
+    <div class="structs" id="structs"></div>
+  </div>
+</section>
+
+<!-- REFERENCE -->
+<section id="tab-reference" hidden>
+  <div class="card">
+    <div class="tw"><table id="reftable"></table></div>
+    <h3>Panels per page (all series)</h3>
+    <div id="ppp"></div>
+    <h3>Where splash pages fall in a chapter (by tenth)</h3>
+    <div id="spl"></div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="tab-connect" hidden>
+  <div class="card prose" id="connect"></div>
+</section>
+<div class="toast" id="toast"></div>
+</main>
+
+<script>
+const MODEL = /*MODEL*/null;
+const POOL_RAW = /*POOL*/null;   // reference pages as layout templates: geometry only, no artwork
+const TAGS = /*TAGS*/null;       // shot size / camera angle per panel, for the pages tagged so far
+const FINDINGS_HTML = /*FINDINGS*/"";
+const CONNECT_HTML = /*CONNECT*/"";
+const W=7, H=10, BLEED=0.125;
+const SIZE_W={splash:8,big:4,wide:2.4,med:1.6,close:1.3,insert:0.7};
+const CELLS=["TL","TC","TR","ML","MC","MR","BL","BC","BR"];
+const $=s=>document.querySelector(s);
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1600)};
+function rng(seed){let a=seed>>>0||1;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const pick=(r,arr)=>arr[Math.floor(r()*arr.length)];
+const wOf=p=>SIZE_W[p.size]||1.6;
+
+// ---------------------------------------------------------------- layout engine (port of mangaforge.layout)
+function candidates(n){
+  let out=MODEL.structures.filter(s=>s.n===n);
+  if(!out.length){let rows=[],left=n;while(left>0){const k=left===4?2:Math.min(3,left);rows.push(k);left-=k}
+    out=[{sig:rows.join("|"),n,share:.001,tier_h_median:rows.map(()=>1/rows.length),tier_w:rows.map(k=>Array(k).fill(1/k)),energy_q:{p50:5}}]}
+  return out}
+function choose(spec,r){
+  const cells=spec.panels.filter(p=>!p.inset), n=cells.length, ws=cells.map(wOf), sz=cells.map(p=>p.size);
+  const sc=candidates(n).map(s=>{
+    const tiers=s.sig.split("|").map(Number), e=s.energy_q?s.energy_q.p50:5;
+    const aff=Math.max(.25,Math.exp(-(((e-spec.energy)/5)**2)));
+    let i=0,fit=1;
+    for(const k of tiers){const g=ws.slice(i,i+k),gs=sz.slice(i,i+k);i+=k;
+      if(Math.max(...g)>=6&&k>1)fit*=.12;else if(Math.max(...g)>=4&&k>1)fit*=.3;
+      if(gs.includes("wide")&&k>1)fit*=.5; if(k>=4)fit*=.25; if(k===1&&Math.max(...g)<1.4)fit*=.8}
+    return[(s.share**.6*aff*fit)**3,s]}).sort((a,b)=>b[0]-a[0]).slice(0,4);
+  const tot=sc.reduce((a,b)=>a+b[0],0);let x=r()*tot;
+  for(const[w,s]of sc){x-=w;if(x<=0)return s}return sc[0][1]}
+function isect(h,v){const[a,s,cx]=h,[c,t,cy]=v;const x=(c+t*(a-s*cx-cy))/(1-t*s);return[x,a+s*(x-cx)]}
+function polyArea(p){let s=0;for(let i=0;i<p.length;i++){const j=(i+p.length-1)%p.length;s+=p[i][0]*p[j][1]-p[j][0]*p[i][1]}return Math.abs(s)/2}
+function makePage(spec){
+  const r=rng(spec.seed*7919+13), g=MODEL.global_, s=choose(spec,r), tiers=s.sig.split("|").map(Number);
+  const cells=spec.panels.filter(p=>!p.inset), insets=spec.panels.filter(p=>p.inset), E=Math.max(0,Math.min(10,spec.energy));
+  const m=.42, X0=m, Y0=m*1.05, X1=W-m, Y1=H-m*1.05;
+  let gut=Math.max(.07,(g.gutter_q?g.gutter_q.p50:.0117)*W*((spec.beat==="pause"||spec.beat==="calm")?1.6:(E>=7?.85:1)));
+  const hg=gut*1.45, vg=gut*.75;
+  let i=0,tw=[];for(const k of tiers){tw.push(Math.max(...cells.slice(i,i+k).map(wOf))**.55);i+=k}
+  let h=s.tier_h_median.map((b,j)=>b*tw[j]);
+  if((spec.beat==="impact"||spec.beat==="reveal")&&h.length>1)h[h.length-1]*=1.12;
+  let t=h.reduce((a,b)=>a+b,0);h=h.map(x=>Math.max(.12,x/t));t=h.reduce((a,b)=>a+b,0);h=h.map(x=>x/t);
+  const slantP=(spec.beat==="calm"||spec.beat==="pause")?.04:Math.min(.9,.03+.06*E);
+  const dq=g.slant_deg_q||{p25:4.5,p50:6.6,p75:9.9,p90:14.4};
+  const ang=()=>{const[lo,hi]=E<5?[dq.p25,dq.p50]:(E<8?[dq.p50,dq.p90]:[dq.p75,dq.p90+4]);return lo+r()*(hi-lo)};
+  let zig=r()<.5?-1:1; const cx=(X0+X1)/2, uh=(Y1-Y0)-hg*(tiers.length-1);
+  let bounds=[],acc=Y0;
+  for(let k=0;k<tiers.length-1;k++){acc+=h[k]*uh;let sl=0;
+    if(r()<slantP){sl=Math.tan(ang()*Math.PI/180)*zig;zig*=-1;const lim=.35*Math.min(h[k],h[k+1])*uh/((X1-X0)/2);sl=Math.max(-lim,Math.min(lim,sl))}
+    bounds.push([acc+hg/2,sl]);acc+=hg}
+  for(let it=0;it<12;it++){let ok=true;
+    const tl=[[Y0,0],...bounds.map(([y,sl])=>[y+hg/2,sl])], bl=[...bounds.map(([y,sl])=>[y-hg/2,sl]),[Y1,0]];
+    for(let k=0;k<tiers.length;k++){const nom=bl[k][0]-tl[k][0];for(const x of[X0,X1]){const th=(bl[k][0]+bl[k][1]*(x-cx))-(tl[k][0]+tl[k][1]*(x-cx));
+      if(th<.6*nom){ok=false;if(k>0)bounds[k-1][1]*=.6;if(k<bounds.length)bounds[k][1]*=.6}}}
+    if(ok)break}
+  const top=[[Y0,0,cx],...bounds.map(([y,sl])=>[y+hg/2,sl,cx])], bot=[...bounds.map(([y,sl])=>[y-hg/2,sl,cx]),[Y1,0,cx]];
+  const panels=[];let idx=0;
+  tiers.forEach((k,ti)=>{const grp=cells.slice(idx,idx+k);idx+=k;
+    const learned=(s.tier_w&&s.tier_w[ti])||Array(k).fill(1/k), ws=grp.map(wOf), order=[...ws.keys()].sort((a,b)=>ws[b]-ws[a]);
+    const lw=Array(k).fill(0);order.forEach((j,rank)=>lw[j]=learned[rank]??1/k);
+    let wts=ws.map((w,j)=>.5*w/ws.reduce((a,b)=>a+b,0)+.5*lw[j]);const ts=wts.reduce((a,b)=>a+b,0);wts=wts.map(x=>x/ts);
+    const uw=(X1-X0)-vg*(k-1);const xs=[X0];for(let j=0;j<k-1;j++)xs.push(xs[xs.length-1]+wts[j]*uw+vg);
+    const tcy=(top[ti][0]+bot[ti][0])/2, vl=[];
+    for(let j=1;j<k;j++){let tt=0;if(r()<slantP*.8){tt=Math.tan(ang()*Math.PI/180)*(r()<.5?-1:1);const th=bot[ti][0]-top[ti][0];const lim=.22*Math.min(wts[j-1],wts[j])*uw/Math.max(.5,th/2);tt=Math.max(-lim,Math.min(lim,tt))}
+      vl.push([xs[j]-vg/2,tt])}
+    const L=[[X0,0,tcy],...vl.map(([x,tt])=>[x+vg/2,tt,tcy])], R=[...vl.map(([x,tt])=>[x-vg/2,tt,tcy]),[X1,0,tcy]];
+    const cols=spec.reading==="ltr"?[...Array(k).keys()]:[...Array(k).keys()].reverse();
+    grp.forEach((p,n)=>{const c=cols[n];panels.push({spec:p,poly:[isect(top[ti],L[c]),isect(top[ti],R[c]),isect(bot[ti],R[c]),isect(bot[ti],L[c])],tier:ti,edges:{top:ti===0,bottom:ti===tiers.length-1,left:c===0,right:c===k-1}})})});
+  const heavy=panels.reduce((a,b)=>wOf(b.spec)>wOf(a.spec)?b:a,panels[0]);
+  for(const q of panels){const want=q.spec.bleed!=null?q.spec.bleed:(q===heavy&&E>=6.5&&wOf(q.spec)>=2.4);q.bleed=[];
+    if(want){let p=q.poly;for(const[e,f]of Object.entries(q.edges)){if(!f)continue;q.bleed.push(e);
+      if(e==="top")p=p.map(([x,y])=>[x,y<=Y0+1e-6?-BLEED:y]);if(e==="bottom")p=p.map(([x,y])=>[x,y>=Y1-1e-6?H+BLEED:y]);
+      if(e==="left")p=p.map(([x,y])=>[x<=X0+1e-6?-BLEED:x,y]);if(e==="right")p=p.map(([x,y])=>[x>=X1-1e-6?W+BLEED:x,y])}q.poly=p}}
+  for(const p of insets){const host=panels[panels.length-1];if(!host)continue;const xs=host.poly.map(v=>v[0]),ys=host.poly.map(v=>v[1]);
+    const bw=(Math.max(...xs)-Math.min(...xs))*.36,bh=(Math.max(...ys)-Math.min(...ys))*.34,x1=Math.min(Math.max(...xs),W-.3)-.18,y1=Math.min(Math.max(...ys),H-.3)-.18;
+    panels.push({spec:p,poly:[[x1-bw,y1-bh],[x1,y1-bh],[x1,y1],[x1-bw,y1]],tier:host.tier,edges:{},bleed:[],inset:true})}
+  const out=panels.map((q,z)=>{const xs=q.poly.map(v=>v[0]),ys=q.poly.map(v=>v[1]);const bb=[Math.min(...xs),Math.min(...ys),Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys)];
+    const ratio=bb[2]/bb[3];const gens=[[1,1,"1024x1024"],[3,2,"1536x1024"],[2,3,"1024x1536"]];const gsel=gens.reduce((a,b)=>Math.abs(Math.log(ratio/(b[0]/b[1])))<Math.abs(Math.log(ratio/(a[0]/a[1])))?b:a);
+    const sub=q.spec.subject||"MC";const opp={T:"B",M:"T",B:"T"}[sub[0]]+{L:"R",C:"L",R:"L"}[sub[1]];
+    return{id:q.spec.id,size:q.spec.size,poly:q.poly.map(([x,y])=>[+x.toFixed(4),+y.toFixed(4)]),bbox:bb.map(v=>+v.toFixed(4)),aspect:+ratio.toFixed(3),gen_size:gsel[2],gen_ratio:gsel[0]+":"+gsel[1],
+      area_share:+(polyArea(q.poly)/(W*H)).toFixed(4),bleed:q.bleed||[],inset:!!q.inset,z:q.inset?10+z:z,breakout:q.spec.breakout||null,subject:sub,lettering_zone:opp}});
+  return{trim:[W,H],bleed:BLEED,structure:s.sig,structure_share:s.share,energy:E,beat:spec.beat,reading:spec.reading,gutter_in:{between_tiers:+hg.toFixed(4),within_tier:+vg.toFixed(4)},panels:out}}
+function scorePage(L){const g=MODEL.global_,ps=L.panels.filter(p=>!p.inset),a=ps.map(p=>p.area_share);const con=a.length>1?Math.max(...a)/Math.min(...a):1;
+  let sl=0;for(const p of L.panels){for(let i=0;i<p.poly.length;i++){const[x1,y1]=p.poly[i],[x2,y2]=p.poly[(i+1)%p.poly.length];const d=(Math.atan2(y2-y1,x2-x1)*180/Math.PI%90+90)%90;if(Math.min(d,90-d)>2.5){sl++;break}}}
+  const notes=[];const sc=g.size_contrast_q;
+  if(ps.length>1&&con<sc.p25)notes.push(`Size contrast ${con.toFixed(1)}× is below the reference p25 (${sc.p25.toFixed(1)}×). Let one panel dominate.`);
+  if(L.energy>=7&&!sl&&!L.panels.some(p=>p.bleed.length))notes.push("A loud page with no slant and no bleed. Most action pages in the library use at least one.");
+  if(ps.length>7)notes.push(`${ps.length} panels is above the reference p90 (${g.panels_per_page_q.p90}). Keep this density for rapid exchanges only.`);
+  return{panels:ps.length,contrast:con,slanted:sl,bleeds:L.panels.filter(p=>p.bleed.length).length,insets:L.panels.filter(p=>p.inset).length,notes}}
+function quality(L){const s=scorePage(L);return -s.notes.length+.15*Math.min(s.contrast,9)/9+.1*L.structure_share*10}
+
+// ---------------------------------------------------------------- reference sampler (port of mangaforge.inspire)
+const SERIES_NAME={DB:"Dragon Ball (colour)",DBS:"Dragon Ball Super",HNK:"Hanako-kun",KSB:"KonoSuba",LC:"Link Click",P3:"Persona 3",P5:"Persona 5"};
+const SHOTW={EWS:"extreme wide shot",WS:"wide shot",FS:"full-figure shot",MS:"medium shot",MCU:"medium close-up",CU:"close-up",ECU:"extreme close-up",INS:"insert detail shot"};
+const ANGW={eye:"eye level",low:"low angle",worm:"worm's-eye view",high:"high angle",bird:"bird's-eye view",dutch:"dutch angle",ots:"over the shoulder",pov:"point of view"};
+const POOL=(POOL_RAW||[]).map(a=>({s:a[0],c:a[1],p:a[2],n:a[3],e:a[4],sig:a[5],key:a[1]+":"+a[2],
+  ps:a[6].map(x=>{const q=[];for(let i=0;i<x[0].length;i+=2)q.push([x[0][i],x[0][i+1]]);return{q,a:x[1],i:x[2],e:x[3],sl:x[4]}})}));
+const SHARE={};POOL.forEach(t=>{SHARE[t.n]=SHARE[t.n]||{};SHARE[t.n][t.s]=(SHARE[t.n][t.s]||0)+1});
+const bboxOf=q=>{const xs=q.map(v=>v[0]),ys=q.map(v=>v[1]);return[Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)]};
+function ranks(v){const o=[...v.keys()].sort((a,b)=>v[a]-v[b]),r=Array(v.length);let i=0;
+  while(i<o.length){let j=i;while(j+1<o.length&&v[o[j+1]]===v[o[i]])j++;for(let k=i;k<=j;k++)r[o[k]]=(i+j)/2;i=j+1}return r}
+function spearman(a,b){if(a.length<2)return 0;const ra=ranks(a),rb=ranks(b),ma=ra.reduce((x,y)=>x+y,0)/ra.length,mb=rb.reduce((x,y)=>x+y,0)/rb.length;
+  let n=0,da=0,db=0;for(let i=0;i<ra.length;i++){n+=(ra[i]-ma)*(rb[i]-mb);da+=(ra[i]-ma)**2;db+=(rb[i]-mb)**2}return da&&db?n/Math.sqrt(da*db):0}
+function prescore(t,spec){const ws=spec.panels.map(wOf),ar=t.ps.map(p=>p.a),mx=Math.max(...ws);
+  let s=2*(mx>Math.min(...ws)?spearman(ws,ar):0);
+  if(mx>=2.4&&ws.length>2){const hv=ws.indexOf(mx),top2=[...ar.keys()].sort((a,b)=>ar[b]-ar[a]).slice(0,2);s+=top2.includes(hv)?.6:-.8}
+  if(ws.length>1){const want=(mx/Math.min(...ws))**1.25,have=Math.max(...ar)/Math.max(1e-4,Math.min(...ar));s-=.22*Math.abs(Math.log(have/want))}
+  s+=1.4*Math.exp(-(((t.e-spec.energy)/2.6)**2));
+  spec.panels.forEach((p,k)=>{const q=t.ps[k],[u0,,u1]=bboxOf(q.q);
+    if(p.size==="wide")s+=u1-u0>.82?.35:-.6;
+    if(p.inset)s+=q.i?.4:-.25;else if(q.i&&wOf(p)>=1.3)s-=.9;
+    if(p.size==="splash"&&spec.panels.length>1&&q.a<.35)s-=.6});
+  if((spec.beat==="pause"||spec.beat==="calm")&&t.e>7.5)s-=.5;
+  if((spec.beat==="impact"||spec.beat==="reveal")&&t.e<3)s-=.5;
+  return s}
+function adaptRef(t,spec){const m=.42,X0=m,Y0=m*1.05,X1=W-m,Y1=H-m*1.05,gw=X1-X0,gh=Y1-Y0,rtl=spec.reading==="rtl";
+  const tags=(TAGS&&TAGS[t.key]&&TAGS[t.key].panels)||[];
+  const pageBleed=new Set(t.ps.map(q=>q.e).join(""));
+  const reach={t:b=>b[1]<.03,b:b=>b[3]>.97,l:b=>b[0]<.03,r:b=>b[2]>.97};
+  const out=[];
+  for(let z=0;z<spec.panels.length;z++){const p=spec.panels[z],q=t.ps[z];
+    let edges=new Set(q.e.split(""));if(!q.i)for(const e of pageBleed)if(reach[e](bboxOf(q.q)))edges.add(e);
+    if(p.bleed===false)edges=new Set();
+    const[lft,rgt]=rtl?["r","l"]:["l","r"];
+    const pts=q.q.map(([u,v])=>{if(rtl)u=1-u;let x=X0+Math.min(1,Math.max(0,u))*gw,y=Y0+Math.min(1,Math.max(0,v))*gh;
+      if((edges.has("t")&&v<.03)||v<-.02)y=-BLEED;if((edges.has("b")&&v>.97)||v>1.02)y=H+BLEED;
+      if((edges.has(lft)&&u<.03)||u<-.02)x=-BLEED;if((edges.has(rgt)&&u>.97)||u>1.02)x=W+BLEED;return[x,y]});
+    const xs=pts.map(v=>v[0]),ys=pts.map(v=>v[1]),bb=[Math.min(...xs),Math.min(...ys),Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys)];
+    if(bb[2]<.2||bb[3]<.2)return null;
+    const bl=[];if(ys.some(y=>y<0))bl.push("top");if(ys.some(y=>y>H))bl.push("bottom");if(xs.some(x=>x<0))bl.push("left");if(xs.some(x=>x>W))bl.push("right");
+    const ratio=bb[2]/bb[3],gens=[[1,1,"1024x1024"],[3,2,"1536x1024"],[2,3,"1024x1536"]],gsel=gens.reduce((a,b)=>Math.abs(Math.log(ratio/(b[0]/b[1])))<Math.abs(Math.log(ratio/(a[0]/a[1])))?b:a);
+    const sub=p.subject||"MC",opp={T:"B",M:"T",B:"T"}[sub[0]]+{L:"R",C:"L",R:"L"}[sub[1]];
+    const area=polyArea(pts)/(W*H);if(area<.004)return null;
+    out.push({id:p.id,size:p.size,poly:pts.map(([x,y])=>[+x.toFixed(4),+y.toFixed(4)]),bbox:bb.map(v=>+v.toFixed(4)),aspect:+ratio.toFixed(3),gen_size:gsel[2],gen_ratio:gsel[0]+":"+gsel[1],
+      area_share:+area.toFixed(4),bleed:bl,inset:!!q.i,z:q.i?10+z:z,breakout:p.breakout||null,subject:sub,lettering_zone:opp,ref_shot:tags[z]||null})}
+  const ch=t.c.split("_")[1].replace("ch","");
+  return{trim:[W,H],bleed:BLEED,structure:t.sig,structure_share:0,energy:spec.energy,beat:spec.beat,reading:spec.reading,gutter_in:null,panels:out,source:"reference",
+    inspired_by:{key:t.key,code:t.s,series:SERIES_NAME[t.s]||t.s,chapter:ch,page:t.p+1,structure:t.sig,tagged:!!tags.length}}}
+function inspireJS(spec,k=3,handful=24,temperature=.9){const n=spec.panels.length;if(n<2)return[];
+  const C=POOL.filter(t=>t.n===n);if(!C.length)return[];
+  const S=Object.keys(SHARE[n]).length,r=rng(spec.seed*104729+7);
+  const sc=C.map(t=>[prescore(t,spec),t]),best=Math.max(...sc.map(x=>x[0]));
+  const keyed=sc.map(([s,t])=>{const w=Math.exp((s-best)/temperature)*(C.length/(S*SHARE[n][t.s]))**.85;return[r()**(1/Math.max(w,1e-12)),s,t]}).sort((a,b)=>b[0]-a[0]).slice(0,handful);
+  const res=[];for(const[,s,t]of keyed){const L=adaptRef(t,spec);if(!L)continue;const ss=scorePage(L);L.inspire_score=s-.35*ss.notes.length;res.push(L)}
+  res.sort((a,b)=>b.inspire_score-a.inspire_score);
+  const picked=[],seen=new Set();for(const L of res){if(!seen.has(L.inspired_by.code)){picked.push(L);seen.add(L.inspired_by.code)}if(picked.length===k)break}
+  for(const L of res){if(picked.length>=k)break;if(!picked.includes(L))picked.push(L)}
+  return picked}
+
+// ---------------------------------------------------------------- rendering
+function pageSVG(L,{scale=60,labels=true}={}){const b=L.bleed,vw=(W+2*b)*scale,vh=(H+2*b)*scale,P=([x,y])=>`${((x+b)*scale).toFixed(1)},${((y+b)*scale).toFixed(1)}`;
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw.toFixed(0)} ${vh.toFixed(0)}" role="img" aria-label="Page layout ${L.structure}"><defs><pattern id="hz" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#16171C" stroke-opacity=".22" stroke-width="3"/></pattern></defs>`;
+  s+=`<rect width="${vw}" height="${vh}" fill="var(--paper)"/><rect x="${b*scale}" y="${b*scale}" width="${W*scale}" height="${H*scale}" fill="none" stroke="var(--bleed)" stroke-dasharray="7 6" stroke-width="1.4"/>`;
+  for(const p of [...L.panels].sort((a,c)=>a.z-c.z)){
+    s+=`<polygon points="${p.poly.map(P).join(" ")}" fill="${p.inset?"var(--ins)":"var(--pfill)"}" stroke="#16171C" stroke-width="${p.inset?4:2.6}" stroke-linejoin="miter"/>`;
+    const[bx,by,bw,bh]=p.bbox;const zx={L:.04,C:.36,R:.68}[p.lettering_zone[1]],zy={T:.05,M:.4,B:.7}[p.lettering_zone[0]];
+    if(labels){s+=`<rect x="${(bx+b+bw*zx)*scale}" y="${(by+b+bh*zy)*scale}" width="${bw*.28*scale}" height="${bh*.22*scale}" fill="url(#hz)"/>`;
+      const cx={L:.22,C:.5,R:.78}[p.subject[1]],cy={T:.22,M:.5,B:.78}[p.subject[0]];
+      s+=`<circle cx="${(bx+b+bw*cx)*scale}" cy="${(by+b+bh*cy)*scale}" r="${Math.max(4,.06*scale)}" fill="#C2272D"/>`;
+      if(p.breakout){const ex={top:[cx,0],bottom:[cx,1],left:[0,cy],right:[1,cy]}[p.breakout];s+=`<path d="M${(bx+b+bw*cx)*scale},${(by+b+bh*cy)*scale} L${(bx+b+bw*ex[0])*scale},${(by+b+bh*ex[1])*scale}" stroke="#C2272D" stroke-width="3" stroke-dasharray="5 4"/>`}
+      s+=`<text x="${(bx+b+.1)*scale+4}" y="${(by+b+bh-.12)*scale}" font-family="IBM Plex Mono,monospace" font-size="${Math.max(10,.2*scale)}" fill="#16171C">${p.id} · ${p.size} · ${p.gen_ratio}</text>`}}
+  return s+"</svg>"}
+function structSVG(s){const tiers=s.sig.split("|").map(Number),hs=s.tier_h_median,g=.04;let y=.05,out=`<svg viewBox="0 0 70 100" role="img" aria-label="${s.sig}"><rect width="70" height="100" fill="var(--paper)" stroke="var(--line)"/>`;
+  const uh=90-g*100*(tiers.length-1);tiers.forEach((k,i)=>{const h=hs[i]*uh,ws=(s.tier_w&&s.tier_w[i])||Array(k).fill(1/k),uw=63-3*(k-1);let x=3.5;
+    ws.forEach(w=>{out+=`<rect x="${x.toFixed(1)}" y="${(y*100).toFixed(1)}" width="${(w*uw).toFixed(1)}" height="${h.toFixed(1)}" fill="var(--pfill)" stroke="#16171C" stroke-width="1.4"/>`;x+=w*uw+3});y+=(h+g*100)/100});
+  return out+"</svg>"}
+
+// ---------------------------------------------------------------- designer state
+let state={energy:6,beat:"build",reading:"ltr",seed:1,source:"ref",pick:0,panels:[{id:"1",size:"wide",subject:"MC"},{id:"2",size:"close",subject:"ML"},{id:"3",size:"med",subject:"MR"},{id:"4",size:"big",subject:"BC",breakout:"top"}]};
+try{const saved=localStorage.getItem("mf-designer");if(saved)state=Object.assign(state,JSON.parse(saved))}catch(e){}
+const PRESETS={
+ "Quiet talk":{energy:2,beat:"calm",panels:["wide:MC","close:ML","close:MR","med:MC","close:ML"]},
+ "Build to hook":{energy:5.5,beat:"build",panels:["wide:MC","med:ML","close:MR","big:BC"]},
+ "Fight bar":{energy:9,beat:"impact",panels:["wide:ML","close:MR","med:MC","close:ML","big:BC","med:MR"]},
+ "Reveal + reaction":{energy:9.5,beat:"reveal",panels:["close:MC","splash:BC","insert:MC:inset"]},
+ "Standoff slivers":{energy:7,beat:"build",panels:["close:MC","close:MC","close:MC"]},
+ "Dread pause":{energy:3,beat:"pause",panels:["wide:MC","wide:MC","med:MC"]},
+};
+function loadPreset(name){const p=PRESETS[name];state.energy=p.energy;state.beat=p.beat;state.seed=1;state.pick=0;
+  state.panels=p.panels.map((x,i)=>{const[size,subject,flag]=x.split(":");return{id:String(i+1),size,subject,inset:flag==="inset",breakout:size==="big"||size==="splash"?"top":null}});sync();render()}
+function sync(){$("#energy").value=state.energy;$("#eVal").textContent=state.energy;$("#beat").value=state.beat;$("#reading").value=state.reading;
+  const pl=$("#plist");pl.innerHTML="";state.panels.forEach((p,i)=>{const row=document.createElement("div");row.className="prow";
+    row.innerHTML=`<span class="pid">${p.id}</span>
+    <select aria-label="Size of panel ${p.id}">${Object.keys(SIZE_W).map(s=>`<option ${s===p.size?"selected":""}>${s}</option>`).join("")}</select>
+    <select aria-label="Subject cell of panel ${p.id}">${CELLS.map(c=>`<option ${c===(p.subject||"MC")?"selected":""}>${c}</option>`).join("")}</select>
+    <select class="hide-s" aria-label="Breakout edge of panel ${p.id}"><option value="">—</option>${["top","bottom","left","right"].map(e=>`<option ${e===p.breakout?"selected":""}>${e}</option>`).join("")}</select>
+    <input type="checkbox" aria-label="Panel ${p.id} is an inset" ${p.inset?"checked":""}>
+    <button aria-label="Remove panel ${p.id}">×</button>`;
+    const[sz,sub,br,ins,del]=row.querySelectorAll("select,input,button");
+    sz.onchange=()=>{p.size=sz.value;render()};sub.onchange=()=>{p.subject=sub.value;render()};br.onchange=()=>{p.breakout=br.value||null;render()};
+    ins.onchange=()=>{p.inset=ins.checked;render()};del.onclick=()=>{if(state.panels.length>1){state.panels.splice(i,1);state.panels.forEach((q,k)=>q.id=String(k+1));sync();render()}};
+    pl.appendChild(row)})}
+let current=null;
+let options=[];
+function render(){
+  options=(state.source!=="engine")?inspireJS({...state},3):[];
+  current=options.length?options[Math.min(state.pick||0,options.length-1)]:makePage({...state});
+  const sc=scorePage(current),g=MODEL.global_;
+  const rb=$("#refbox");
+  if(options.length){const r=current.inspired_by;
+    rb.innerHTML=`<p class="sub" style="margin:10px 0 6px">Inspired by <b>${r.series}</b>, chapter ${r.chapter}, page ${r.page} · panel shapes only${r.tagged?" · shot tags included in the prompts":""}. Pick another draw:</p>
+      <div class="opts">${options.map((L,i)=>`<button class="opt" aria-pressed="${i===(state.pick||0)}" data-i="${i}" aria-label="Option ${i+1}: ${L.inspired_by.series}">${pageSVG(L,{scale:14,labels:false})}<small>${L.inspired_by.code} · ${L.structure}</small></button>`).join("")}</div>`;
+    rb.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{state.pick=+b.dataset.i;render()})}
+  else rb.innerHTML=state.source!=="engine"&&state.panels.length<2?`<p class="sub" style="margin:10px 0 0">Single-panel pages use the engine (the detector often merges panels on reference splash pages).</p>`:"";
+  $("#stage").innerHTML=pageSVG(current);
+  const inRange=(v,q)=>v>=q.p25&&v<=q.p75;
+  $("#metrics").innerHTML=[
+    ["Structure",current.structure,current.inspired_by?`from ${current.inspired_by.code} ch ${current.inspired_by.chapter} p ${current.inspired_by.page}`:`${(current.structure_share*100).toFixed(1)}% of reference pages`],
+    ["Size contrast",sc.contrast.toFixed(1)+"×",`reference median ${g.size_contrast_q.p50.toFixed(1)}× (IQR ${g.size_contrast_q.p25.toFixed(1)}–${g.size_contrast_q.p75.toFixed(1)})`,sc.panels<2||inRange(sc.contrast,g.size_contrast_q)],
+    ["Slanted panels",sc.slanted,`${Math.round(g.slant_page_rate*100)}% of reference pages slant`],
+    ["Gutters",current.gutter_in?`${current.gutter_in.between_tiers.toFixed(2)}" / ${current.gutter_in.within_tier.toFixed(2)}"`:"as drawn",current.gutter_in?"between tiers / within a tier":"kept from the reference page"],
+    ["Bleeds · insets",`${sc.bleeds} · ${sc.insets}`,"panels past the trim · floating panels"]]
+    .map(([k,v,s,ok])=>`<div class="m"><small>${k}</small><b class="${ok===false?"warn":(ok?"ok":"")}">${v}</b><small>${s}</small></div>`).join("");
+  $("#notes").innerHTML=sc.notes.map(n=>`<li>${n}</li>`).join("");
+  try{localStorage.setItem("mf-designer",JSON.stringify(state))}catch(e){}}
+function prompts(){const st=$("#style").value.trim();const cw=c=>c==="MC"?"centre":({T:"upper",M:"middle",B:"lower"}[c[0]]+"-"+{L:"left",C:"centre",R:"right"}[c[1]]);
+  return current.panels.map(p=>`PANEL ${p.id} · generate at ${p.gen_size} · crops to ${p.aspect.toFixed(2)}:1\n${st}. [describe the shot]. Composition: keep the main subject in the ${cw(p.subject)} of the frame and inside the central 80%; leave the ${cw(p.lettering_zone)} area simple for lettering.${p.ref_shot?` Camera (from the reference page): ${[SHOTW[p.ref_shot.shot],ANGW[p.ref_shot.angle]].filter(Boolean).join(", ")}.`:""}${p.breakout?` The subject reaches toward the ${p.breakout} edge (it will break out of the panel border); keep the silhouette clean so it can be cut out.`:""} No text, no letters, no speech bubbles, no panel borders, no watermark.`).join("\n\n")}
+async function copy(t,msg){try{await navigator.clipboard.writeText(t);toast(msg)}catch(e){const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();toast("Select and copy the text");setTimeout(()=>ta.remove(),8000)}}
+
+// ---------------------------------------------------------------- wiring
+function init(){
+  $("#hdrPages").textContent=MODEL.pages.toLocaleString();$("#hdrSeries").textContent=MODEL.series.length;
+  $("#presets").innerHTML=Object.keys(PRESETS).map(k=>`<button class="btn alt">${k}</button>`).join("");
+  $("#presets").querySelectorAll("button").forEach(b=>b.onclick=()=>loadPreset(b.textContent));
+  $("#energy").oninput=e=>{state.energy=+e.target.value;$("#eVal").textContent=state.energy;render()};
+  $("#beat").onchange=e=>{state.beat=e.target.value;render()};$("#reading").onchange=e=>{state.reading=e.target.value;render()};
+  $("#addP").onclick=()=>{if(state.panels.length<9){state.panels.push({id:String(state.panels.length+1),size:"med",subject:"MC"});sync();render()}};
+  $("#source").value=state.source||"ref";$("#source").onchange=e=>{state.source=e.target.value;state.pick=0;render()};
+  $("#variant").onclick=()=>{state.seed++;state.pick=0;render();if(state.source!=="engine")toast("Drew a new handful of reference pages")};
+  $("#best").onclick=()=>{let best=null,bs=-1e9,bp=0;for(let k=0;k<12;k++){const sd=state.seed+k+1;
+      if(state.source!=="engine"&&state.panels.length>1){inspireJS({...state,seed:sd},3).forEach((L,i)=>{const q=quality(L)+.1*L.inspire_score;if(q>bs){bs=q;best=sd;bp=i}})}
+      else{const q=quality(makePage({...state,seed:sd}));if(q>bs){bs=q;best=sd;bp=0}}}
+    state.seed=best;state.pick=bp;render();toast(state.source!=="engine"?"Kept the best of 12 draws":"Picked the best of 12 variants")};
+  $("#copyJson").onclick=()=>copy(JSON.stringify(current,null,1),"Layout JSON copied");
+  $("#copyPrompts").onclick=()=>copy(prompts(),"Panel prompts copied");
+  document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-selected",x===b));
+    document.querySelectorAll("main>section").forEach(s=>s.hidden=s.id!=="tab-"+b.dataset.tab);if(location.hash!=="#"+b.dataset.tab)history.replaceState(null,"","#"+b.dataset.tab)});
+  const h=location.hash.slice(1);const tb=document.querySelector(`nav button[data-tab="${h}"]`);if(tb)tb.click();
+  $("#findings").innerHTML=FINDINGS_HTML;$("#connect").innerHTML=CONNECT_HTML;
+  // library
+  const ns=[...new Set(MODEL.structures.map(s=>s.n))].sort((a,b)=>a-b);$("#libN").innerHTML+=ns.map(n=>`<option>${n}</option>`).join("");
+  const drawLib=()=>{const n=+$("#libN").value;$("#structs").innerHTML=MODEL.structures.filter(s=>!n||s.n===n).map(s=>`<figure data-sig="${s.sig}">${structSVG(s)}<figcaption>${s.sig}</figcaption><small>${(s.share*100).toFixed(1)}% · energy ${s.energy_q?s.energy_q.p50.toFixed(1):"–"} · slants ${Math.round(s.slant_rate*100)}%</small></figure>`).join("");
+    $("#structs").querySelectorAll("figure").forEach(f=>f.onclick=()=>{const s=MODEL.structures.find(x=>x.sig===f.dataset.sig);state.panels=Array.from({length:s.n},(_,i)=>({id:String(i+1),size:"med",subject:"MC"}));
+      let i=0;s.sig.split("|").map(Number).forEach((k,ti)=>{if(k===1)state.panels[i].size=s.tier_h_median[ti]>.4?"big":"wide";i+=k});state.energy=s.energy_q?Math.round(s.energy_q.p50*2)/2:5;sync();render();document.querySelector('nav button[data-tab="design"]').click()})};
+  $("#libN").onchange=drawLib;drawLib();
+  // reference table
+  const pct=v=>Math.round(v*100)+"%",q=(o,d=1)=>o?`${o.p50.toFixed(d)} <span class="sub">(${o.p25.toFixed(d)}–${o.p75.toFixed(d)})</span>`:"–";
+  const NAMES={DB:"Dragon Ball (colour)",DBS:"Dragon Ball Super",HNK:"Hanako-kun",KSB:"KonoSuba",LC:"Link Click",P3:"Persona 3",P5:"Persona 5"};
+  const rows=[["All",MODEL.global_],...Object.entries(MODEL.by_series)];
+  $("#reftable").innerHTML=`<tr><th>Series</th><th>Pages</th><th>Panels / page</th><th>Size contrast</th><th>Slant pages</th><th>Slant °</th><th>Frame-break pages</th><th>Splash</th><th>Black ink</th><th>Dark pages</th></tr>`+
+    rows.map(([k,v])=>`<tr><td>${NAMES[k]||k}</td><td class="mono">${(v.pages||MODEL.pages)}</td><td class="mono">${q(v.panels_per_page_q,0)}</td><td class="mono">${q(v.size_contrast_q)}×</td><td class="mono">${pct(v.slant_page_rate)}</td><td class="mono">${v.slant_deg_q?q(v.slant_deg_q):"–"}</td><td class="mono">${pct(v.bridge_page_rate)}</td><td class="mono">${pct(v.splash_rate)}</td><td class="mono">${pct(v.ink_black_q.p50)}</td><td class="mono">${pct(v.dark_page_rate)}</td></tr>`).join("");
+  const ppp=MODEL.global_.panels_per_page,mx=Math.max(...Object.values(ppp));
+  $("#ppp").innerHTML=Object.entries(ppp).sort((a,b)=>a[0]-b[0]).map(([k,v])=>`<div class="row" style="align-items:center;margin:3px 0"><span class="mono" style="flex:0 0 28px">${k}</span><div class="bar" style="flex:1"><i style="width:${v/mx*100}%"></i></div><span class="mono sub" style="flex:0 0 44px;text-align:right">${v}</span></div>`).join("");
+  const sp=MODEL.rhythm.splash_by_decile,sm=Math.max(...sp);
+  $("#spl").innerHTML=sp.map((v,i)=>`<div class="row" style="align-items:center;margin:3px 0"><span class="mono" style="flex:0 0 64px">${i*10}–${i*10+10}%</span><div class="bar" style="flex:1"><i style="width:${v/sm*100}%;background:var(--acc)"></i></div><span class="mono sub" style="flex:0 0 44px;text-align:right">${v}</span></div>`).join("");
+  sync();render()}
+init();
+</script>

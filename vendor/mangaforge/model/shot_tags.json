@@ -1,0 +1,1341 @@
+{
+"DB_ch106:1": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "EWS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"DB_ch115_9f0ffedb:3": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "dutch",
+"shot": "WS"
+},
+{
+"angle": "low",
+"shot": "MCU"
+}
+]
+},
+"DB_ch122_10ca0f48:5": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "high",
+"shot": "FS"
+}
+]
+},
+"DB_ch137_10243458:14": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"DB_ch139_45806a3e:8": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "dutch",
+"shot": "WS"
+}
+]
+},
+"DB_ch149_24d4efa8:14": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "low",
+"shot": "EWS"
+},
+{
+"angle": "bird",
+"shot": "WS"
+}
+]
+},
+"DB_ch151_c90fd4fa:13": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "ECU"
+}
+]
+},
+"DB_ch157_e1f6ccd2:8": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"DB_ch161_54e1dc58:1": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "CU"
+},
+{
+"angle": "dutch",
+"shot": "MCU"
+}
+]
+},
+"DB_ch164_f0e054bf:10": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"DB_ch164_f0e054bf:11": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "ots",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "FS"
+}
+]
+},
+"DB_ch172_78cccd71:3": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"DB_ch177_d6dd57cd:4": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "MS"
+}
+]
+},
+"DB_ch181_d9404823:6": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "low",
+"shot": "ECU"
+}
+]
+},
+"DB_ch184_156d6cac:2": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"DB_ch186_1368eb64:1": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"DB_ch190_212e69e2:1": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "FS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+}
+]
+},
+"DB_ch195_e4142b63:15": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "EWS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "dutch",
+"shot": "MS"
+}
+]
+},
+"DB_ch214_ed7185ab:8": {
+"note": "",
+"panels": [
+{
+"angle": "ots",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"DB_ch218_043940b3:12": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "dutch",
+"shot": "MCU"
+}
+]
+},
+"DB_ch220_4d468cb7:9": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "dutch",
+"shot": "FS"
+}
+]
+},
+"DB_ch229_27e54881:4": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "WS"
+},
+{
+"angle": "dutch",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "MS"
+}
+]
+},
+"DB_ch233_d3dc9069:4": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "CU"
+}
+]
+},
+"DB_ch23_73d33659:1": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "EWS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"DB_ch248_76c4d037:10": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"DB_ch256_137d5977:9": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "MS"
+},
+{
+"angle": "bird",
+"shot": "WS"
+}
+]
+},
+"DB_ch26_cff0de88:5": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "WS"
+},
+{
+"angle": "ots",
+"shot": "MS"
+}
+]
+},
+"DB_ch274_20d02401:11": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"DB_ch281_5ae346a6:2": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"DB_ch288_e1cfac1b:2": {
+"note": "",
+"panels": [
+{
+"angle": "bird",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "ots",
+"shot": "MCU"
+},
+{
+"angle": "ots",
+"shot": "WS"
+}
+]
+},
+"DB_ch290_466a9e56:9": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "WS"
+},
+{
+"angle": "high",
+"shot": "FS"
+}
+]
+},
+"DB_ch291_d5de687b:12": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "WS"
+},
+{
+"angle": "high",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"DB_ch297_a791d92a:8": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "dutch",
+"shot": "WS"
+}
+]
+},
+"DB_ch298_a4b3d0a1:12": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "FS"
+}
+]
+},
+"DB_ch300_8ad666a9:11": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "WS"
+},
+{
+"angle": "low",
+"shot": "MS"
+}
+]
+},
+"DB_ch300_8ad666a9:5": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"DB_ch305_23ecbb17:4": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"DB_ch313_353265ec:9": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "low",
+"shot": "FS"
+}
+]
+},
+"DB_ch31_f7a92263:8": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "ots",
+"shot": "MCU"
+}
+]
+},
+"DB_ch329_ed60ccd7:5": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "WS"
+},
+{
+"angle": "low",
+"shot": "WS"
+},
+{
+"angle": "low",
+"shot": "MS"
+}
+]
+},
+"DB_ch346_0de3cc45:4": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"DB_ch36_6b68d539:14": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"HNK_ch1_b792e33b:11": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"HNK_ch55_43eaebbe:33": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"HNK_ch58:22": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+}
+]
+},
+"HNK_ch58:4": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "EWS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "INS"
+}
+]
+},
+"HNK_ch62:13": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "FS"
+}
+]
+},
+"HNK_ch71:18": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "low",
+"shot": "FS"
+}
+]
+},
+"HNK_ch72_1b477038:25": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "ots",
+"shot": "MS"
+}
+]
+},
+"HNK_ch86:28": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"HNK_ch87_fff958ac:11": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "FS"
+}
+]
+},
+"HNK_ch91:10": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+}
+]
+},
+"HNK_ch95_fbd8495e:29": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "MS"
+}
+]
+},
+"HNK_ch95_fbd8495e:5": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+}
+]
+},
+"HNK_ch99_ac864db3:32": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "ECU"
+}
+]
+},
+"KSB_ch120:25": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"KSB_ch121_b1860825:2": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "FS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "ots",
+"shot": "MS"
+}
+]
+},
+"KSB_ch13_cd38073d:12": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "ECU"
+},
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"KSB_ch16_fcc0f598:21": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"KSB_ch18:7": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"KSB_ch1:23": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+}
+]
+},
+"KSB_ch26:14": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "low",
+"shot": "MCU"
+},
+{
+"angle": "high",
+"shot": "EWS"
+}
+]
+},
+"KSB_ch30_836b00fe:14": {
+"note": "",
+"panels": [
+{
+"angle": "dutch",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "WS"
+}
+]
+},
+"KSB_ch3_33a3949e:28": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"P3_ch14:28": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"P3_ch15_9fa22f3a:2": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "INS"
+}
+]
+},
+"P3_ch19:7": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "EWS"
+},
+{
+"angle": "ots",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "CU"
+}
+]
+},
+"P3_ch22.2_3b2ab377:9": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "WS"
+},
+{
+"angle": "high",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "eye",
+"shot": "INS"
+}
+]
+},
+"P3_ch25:0": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"P3_ch26:10": {
+"note": "",
+"panels": [
+{
+"angle": "low",
+"shot": "MS"
+},
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "MS"
+}
+]
+},
+"P3_ch2:10": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "WS"
+},
+{
+"angle": "low",
+"shot": "EWS"
+}
+]
+},
+"P3_ch38_52f6bd43:9": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "CU"
+},
+{
+"angle": "eye",
+"shot": "ECU"
+}
+]
+},
+"P3_ch3:37": {
+"exclude": true,
+"note": "author afterword / omake, not a story page"
+},
+"P3_ch3:38": {
+"exclude": true,
+"note": "author afterword / omake, not a story page"
+},
+"P5_ch4:2": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "dutch",
+"shot": "WS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "low",
+"shot": "CU"
+}
+]
+},
+"P5_ch4:21": {
+"note": "",
+"panels": [
+{
+"angle": "high",
+"shot": "INS"
+},
+{
+"angle": "eye",
+"shot": "MCU"
+},
+{
+"angle": "high",
+"shot": "INS"
+},
+{
+"angle": "high",
+"shot": "WS"
+}
+]
+},
+"P5_ch5:29": {
+"note": "",
+"panels": [
+{
+"angle": "eye",
+"shot": "MS"
+},
+{
+"angle": "high",
+"shot": "FS"
+},
+{
+"angle": "high",
+"shot": "FS"
+}
+]
+}
+}
